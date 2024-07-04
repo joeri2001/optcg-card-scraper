@@ -6,7 +6,7 @@ import re
 import sys
 
 # Toggle to enable or disable image downloading
-download_images = False
+download_images = True
 
 # Base URLs
 base_url = "https://en.onepiece-cardgame.com/cardlist/?series="
@@ -92,7 +92,7 @@ def scrape_series(series_number):
         card_set = card_element.find('div', class_='getInfo').text.replace('Card Set(s)', '').strip() if card_element.find('div', class_='getInfo') else 'N/A'
         folder_name = sanitize_folder_name(card_set)
 
-        image_url = f"{image_base_url}{card_number}.png"
+        image_url = f"{image_base_url}{card_id}.png"
         image_path = download_image(image_url, f"{card_id}.png", folder_name) if download_images else f"images/{folder_name}/{card_id}.png"
 
         cards.append({
